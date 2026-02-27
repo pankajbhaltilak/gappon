@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 
 interface Testimonial {
@@ -15,7 +15,6 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
     const timer = setInterval(() => {
       setIndex((prev) => (prev + 1) % testimonials.length);
     }, 4500);
-
     return () => clearInterval(timer);
   }, [testimonials.length]);
 
@@ -33,16 +32,6 @@ export function TestimonialSlider({ testimonials }: { testimonials: Testimonial[
           <footer className="mt-6 text-xs uppercase tracking-[0.2em] text-[#c2b7a2]">{testimonials[index].author}</footer>
         </motion.blockquote>
       </AnimatePresence>
-      <div className="mt-6 flex gap-2">
-        {testimonials.map((item, dotIndex) => (
-          <button
-            key={item.author}
-            onClick={() => setIndex(dotIndex)}
-            aria-label={`Show testimonial ${dotIndex + 1}`}
-            className={`h-2 rounded-full transition-all ${dotIndex === index ? 'w-8 bg-[#c2b7a2]' : 'w-2 bg-white/30'}`}
-          />
-        ))}
-      </div>
     </div>
   );
 }

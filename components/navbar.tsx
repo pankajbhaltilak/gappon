@@ -1,84 +1,79 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-const menu = [
-  { label: 'Home', href: '/' },
-  { label: 'About', href: '/about' },
-  { label: 'Product', href: '/product' },
-  { label: 'Services', href: '/services' },
-  { label: 'Collection', href: '/collection' },
-  { label: 'Wholesale', href: '/wholesale' },
-  { label: 'Gallery', href: '/gallery' },
-  { label: 'Contact', href: '/contact' }
-];
+const links = [
+  ['/', 'Home'],
+  ['/about', 'About'],
+  ['/collection', 'Collection'],
+  ['/product', 'Products'],
+  ['/services', 'Services'],
+  ['/gallery', 'Gallery'],
+  ['/wholesale', 'Wholesale'],
+  ['/contact', 'Contact']
+] as const;
 
 export function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [megaOpen, setMegaOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/65 backdrop-blur-2xl">
-      <div className="container-pad flex h-20 items-center justify-between">
-        <Link href="/" className="font-serif text-xl tracking-[0.3em] text-[#ece9e2]" style={{ fontFamily: 'var(--font-cormorant), serif' }}>
-          GAPONN
+    <header className="fixed inset-x-0 top-0 z-[100] border-b border-white/10 bg-black/70 backdrop-blur-xl">
+      <nav className="container-pad flex h-16 items-center justify-between md:h-20">
+        <Link href="/" className="max-w-[70%] truncate font-serif text-xl text-[#f4f1eb] sm:text-2xl" onClick={() => setIsOpen(false)}>
+          Gaponn Trends
         </Link>
-        <nav className="hidden items-center gap-7 lg:flex">
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ebony/95 backdrop-blur">
-      <div className="container-pad flex h-20 items-center justify-between">
-        <Link href="/" className="text-xl font-semibold tracking-[0.2em] text-pearl">
-          GAPONN TRENDS
-        </Link>
-        <nav className="hidden items-center gap-6 lg:flex">
-          {menu.map((item) => (
-            <Link key={item.href} href={item.href} className="nav-link">
-              {item.label}
+
+        <button
+          type="button"
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-white/20 text-white lg:hidden"
+          aria-label={isOpen ? 'Close menu' : 'Open menu'}
+          aria-expanded={isOpen}
+          onClick={() => setIsOpen((prev) => !prev)}
+        >
+          {isOpen ? (
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M6 6l12 12M18 6L6 18" />
+            </svg>
+          ) : (
+            <svg viewBox="0 0 24 24" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2">
+              <path d="M3 6h18M3 12h18M3 18h18" />
+            </svg>
+          )}
+        </button>
+
+        <div className="hidden gap-5 xl:gap-6 lg:flex">
+          {links.map(([href, label]) => (
+            <Link key={href} href={href} className="nav-link">
+              {label}
             </Link>
           ))}
-          <div className="relative" onMouseEnter={() => setMegaOpen(true)} onMouseLeave={() => setMegaOpen(false)}>
-            <button className="nav-link">Collections</button>
-            {megaOpen && (
-              <div className="absolute right-0 top-full mt-4 grid w-[460px] grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-[#111113] p-7 text-[#ece9e2] shadow-2xl">
-                <div>
-                  <h4 className="font-serif text-xl" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Shirt Collection</h4>
-                  <p className="mt-2 text-sm text-white/65">Imported premium fabrics and precision cuts for formal business wardrobes.</p>
-                </div>
-                <div>
-                  <h4 className="font-serif text-xl" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Trouser Collection</h4>
-                  <p className="mt-2 text-sm text-white/65">Structured tailoring built for comfort, confidence and retail demand.</p>
-            <button className="nav-link">Categories</button>
-            {megaOpen && (
-              <div className="absolute right-0 top-full mt-4 grid w-[420px] grid-cols-2 gap-6 rounded-xl bg-pearl p-6 text-ebony shadow-luxe">
-                <div>
-                  <h4 className="font-semibold">Shirts</h4>
-                  <p className="mt-2 text-sm text-black/70">Executive, solids, stripes and premium cotton edits.</p>
-                </div>
-                <div>
-                  <h4 className="font-semibold">Trousers</h4>
-                  <p className="mt-2 text-sm text-black/70">Tailored fits for retail-ready formal collections.</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </nav>
-        <button className="text-2xl text-[#ece9e2] lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
-        <button className="text-pearl lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
-          ☰
-        </button>
-      </div>
-      {open && (
-        <div className="border-t border-white/10 bg-[#101012] px-5 py-5 lg:hidden">
-        <div className="border-t border-white/10 bg-ebony px-4 py-4 lg:hidden">
-          <div className="flex flex-col gap-4">
-            {menu.map((item) => (
-              <Link key={item.href} href={item.href} className="nav-link" onClick={() => setOpen(false)}>
-                {item.label}
+        </div>
+      </nav>
+
+      {isOpen ? (
+        <div className="border-t border-white/10 bg-black/95 lg:hidden">
+          <div className="container-pad flex max-h-[calc(100vh-4rem)] flex-col overflow-y-auto py-4 md:max-h-[calc(100vh-5rem)]">
+            {links.map(([href, label]) => (
+              <Link
+                key={href}
+                href={href}
+                className="rounded-md px-2 py-3 text-sm uppercase tracking-[0.16em] text-white/90 transition hover:bg-white/10"
+                onClick={() => setIsOpen(false)}
+              >
+                {label}
               </Link>
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </header>
   );
 }
