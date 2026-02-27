@@ -17,39 +17,39 @@ export function Navbar() {
   const [megaOpen, setMegaOpen] = useState(false);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/65 backdrop-blur-2xl">
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-ebony/95 backdrop-blur">
       <div className="container-pad flex h-20 items-center justify-between">
-        <Link href="/" className="font-serif text-xl tracking-[0.3em] text-[#ece9e2]" style={{ fontFamily: 'var(--font-cormorant), serif' }}>
-          GAPONN
+        <Link href="/" className="text-xl font-semibold tracking-[0.2em] text-pearl">
+          GAPONN TRENDS
         </Link>
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-6 lg:flex">
           {menu.map((item) => (
             <Link key={item.href} href={item.href} className="nav-link">
               {item.label}
             </Link>
           ))}
           <div className="relative" onMouseEnter={() => setMegaOpen(true)} onMouseLeave={() => setMegaOpen(false)}>
-            <button className="nav-link">Segments</button>
+            <button className="nav-link">Categories</button>
             {megaOpen && (
-              <div className="absolute right-0 top-full mt-4 grid w-[460px] grid-cols-2 gap-6 rounded-2xl border border-white/10 bg-[#111113] p-7 text-[#ece9e2] shadow-2xl">
+              <div className="absolute right-0 top-full mt-4 grid w-[420px] grid-cols-2 gap-6 rounded-xl bg-pearl p-6 text-ebony shadow-luxe">
                 <div>
-                  <h4 className="font-serif text-xl" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Shirt Collection</h4>
-                  <p className="mt-2 text-sm text-white/65">Signature business shirts in solids, textures and stripes for premium formal shelves.</p>
+                  <h4 className="font-semibold">Shirts</h4>
+                  <p className="mt-2 text-sm text-black/70">Executive, solids, stripes and premium cotton edits.</p>
                 </div>
                 <div>
-                  <h4 className="font-serif text-xl" style={{ fontFamily: 'var(--font-cormorant), serif' }}>Trouser Collection</h4>
-                  <p className="mt-2 text-sm text-white/65">Tailored silhouettes in contemporary shades, built for repeat wholesale movement.</p>
+                  <h4 className="font-semibold">Trousers</h4>
+                  <p className="mt-2 text-sm text-black/70">Tailored fits for retail-ready formal collections.</p>
                 </div>
               </div>
             )}
           </div>
         </nav>
-        <button className="text-2xl text-[#ece9e2] lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
+        <button className="text-pearl lg:hidden" onClick={() => setOpen((v) => !v)} aria-label="Toggle menu">
           ☰
         </button>
       </div>
       {open && (
-        <div className="border-t border-white/10 bg-[#101012] px-5 py-5 lg:hidden">
+        <div className="border-t border-white/10 bg-ebony px-4 py-4 lg:hidden">
           <div className="flex flex-col gap-4">
             {menu.map((item) => (
               <Link key={item.href} href={item.href} className="nav-link" onClick={() => setOpen(false)}>
