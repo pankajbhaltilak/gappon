@@ -1,4 +1,4 @@
-import type { Metadata, Viewport } from 'next';
+import type { Metadata } from 'next';
 import './globals.css';
 import { Navbar } from '@/components/navbar';
 import { Footer } from '@/components/footer';
@@ -14,17 +14,12 @@ export const metadata: Metadata = {
     'Gaponn Trends is a premium mens formal wear manufacturer and wholesaler delivering shirts and trousers for retailers and distributors across India.'
 };
 
-export const viewport: Viewport = {
-  width: 'device-width',
-  initialScale: 1
-};
-
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className="overflow-x-hidden">
+      <body>
         <Navbar />
-        <main className="min-h-screen pt-16 md:pt-20">{children}</main>
+        <main className="min-h-screen pt-20">{children}</main>
         <Footer />
         <WhatsAppFloat phone="919186010998" />
       </body>
