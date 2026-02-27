@@ -25,6 +25,13 @@ export default function GalleryPage() {
           <div key={src} className="group relative h-72 overflow-hidden rounded-2xl border border-white/10">
             <Image src={src} alt="Gaponn Trends gallery" fill className="object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
             <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+    <div className="container-pad py-20">
+      <h1 className="section-title">Gallery</h1>
+      <p className="mt-4 text-black/70">A visual showcase of our formalwear line, quality process and brand style.</p>
+      <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {images.map((src) => (
+          <div key={src} className="relative h-64 overflow-hidden rounded-2xl">
+            <Image src={src} alt="Gaponn Trends gallery" fill className="object-cover" loading="lazy" />
           </div>
         ))}
       </div>

@@ -18,6 +18,9 @@ export default function CollectionPage() {
       <p className="kicker">Our collection</p>
       <h1 className="section-title mt-4 text-[#f4f1eb]">Luxury-Inspired Formal Assortments</h1>
       <p className="mt-5 max-w-3xl text-white/65">Explore image-led edits across shirts and trousers curated for premium retail positioning and high wholesale movement.</p>
+    <div className="container-pad py-20">
+      <h1 className="section-title">Formal Wear Collection</h1>
+      <p className="mt-4 max-w-3xl text-black/70">Image-led catalog designed for retailers and distributors looking for premium shirt and trouser assortments.</p>
       <div className="mt-12">
         <CollectionGrid products={products} />
       </div>

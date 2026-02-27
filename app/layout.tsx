@@ -32,6 +32,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main className="min-h-screen pt-20">{children}</main>
         <Footer />
         <WhatsAppFloat phone="919186010998" />
+      <body>
+        <Navbar />
+        <main className="min-h-screen pt-20">{children}</main>
+        <Footer />
+        <WhatsAppFloat phone="919999999999" />
       </body>
     </html>
   );

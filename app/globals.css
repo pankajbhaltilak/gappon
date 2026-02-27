@@ -32,4 +32,21 @@ body {
 
 .glass-panel {
   @apply rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+  color-scheme: light;
+}
+
+body {
+  @apply bg-pearl text-ebony antialiased;
+}
+
+.container-pad {
+  @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
+}
+
+.nav-link {
+  @apply text-sm uppercase tracking-[0.16em] text-pearl/90 hover:text-stone transition-colors;
+}
+
+.section-title {
+  @apply text-3xl md:text-4xl font-semibold tracking-tight;
 }
