@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+}
+
+body {
+  @apply bg-[#0b0b0d] text-[#ece9e2] antialiased;
+  font-family: var(--font-inter), system-ui, sans-serif;
+  background-image: radial-gradient(circle at 10% -10%, rgba(194, 183, 162, 0.2), transparent 40%),
+    radial-gradient(circle at 90% 10%, rgba(255, 255, 255, 0.08), transparent 35%);
+}
+
+.container-pad {
+  @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-12;
+}
+
+.nav-link {
+  @apply text-xs uppercase tracking-[0.24em] text-[#ece9e2]/80 transition-colors hover:text-[#c2b7a2];
+}
+
+.section-title {
+  @apply font-serif text-4xl leading-tight md:text-5xl;
+  font-family: var(--font-cormorant), serif;
+}
+
+.kicker {
+  @apply text-xs uppercase tracking-[0.28em] text-[#c2b7a2];
+}
+
+.glass-panel {
+  @apply rounded-3xl border border-white/10 bg-white/[0.03] backdrop-blur-xl;
+}
